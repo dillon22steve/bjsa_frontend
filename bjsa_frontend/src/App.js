@@ -1,4 +1,21 @@
 import './App.css';
+import { getExpectedValue } from './ApiHandler';
+
+
+async function retrieveExpectedValue() {
+  console.log("Called");
+
+  const dealerUpCard = document.getElementById("dealerUpCardInput").value.toString();
+  const playersHand = document.getElementById("playerHandInput").value.toString();
+  const deviation = document.getElementById("deviationInput").value.toString();
+
+  const expectedValue = getExpectedValue(dealerUpCard, playersHand, deviation);
+  console.log(expectedValue);
+
+  document.getElementById("resultsLabel").innerHTML = expectedValue;
+
+  return expectedValue;
+};
 
 function App() {
   return (
@@ -19,6 +36,7 @@ function App() {
       </div>
 
       <div>
+        <button id="expectedValueButton" onClick={retrieveExpectedValue}>Get ExpectedValue</button>
         <label id="resultsLabel"></label>
       </div>
     </div>
